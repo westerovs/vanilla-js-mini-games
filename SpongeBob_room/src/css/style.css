@@ -24,14 +24,6 @@ https://via.placeholder.com/150x100
     overflow: hidden;
 }
 
-a {
-    text-decoration: none;
-}
-
-li {
-    list-style-type: none;
-}
-
 img {
     display: block;
     max-width: 100%;
@@ -60,6 +52,21 @@ img {
     background-repeat: no-repeat;
     background-position: center;
     user-select: none;
+}
+
+.win-message {
+    position: absolute;
+    top: 400px;
+    left: 430px;
+    display: grid;
+    place-items: center;
+    width: 250px;
+    height: 100px;
+    background: white;
+    color: black;
+    border-radius: 30px;
+    font-size: 25px;
+    z-index: 3;
 }
 
 .button-panel {

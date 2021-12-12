@@ -5,26 +5,52 @@ import ActiveTabs from './abstract/ActiveTabs.js';
 class Game {
   constructor() {
     this.game     = document.querySelector('.game')
-    this.btnPanel = document.querySelector('.button-panel')
+    this.winMessage = document.querySelector('.win-message')
     
     this.rowItemWallpaper = document.querySelector('.row-items-wallpaper')
     this.rowItemBad       = document.querySelector('.row-items-bed')
     
     this.btnWallpaper = document.querySelector('.button-wallpaper')
-    this.btnBad       = document.querySelector('.button-bad')
+    this.btnBed       = document.querySelector('.button-bad')
+    this._allDisabled = false
+    this._isWinGame = false
   }
   
-  init() {
+  init = () => {
     this._addedHandlers()
-    this.game.addEventListener('state-room', this.finalGame)
   }
   
-  finalGame(event) {
-    const state = event.detail.state
-    
-    if (state.bed.check && state.wallpaper.check) {
-      console.log('WIN')
+  runFinalScene = () => {
+    console.warn('FINISH GAME')
+    if (this._allDisabled && this._isWinGame) {
+      this.winMessage.classList.remove('visually-hidden')
     }
+  }
+  
+  // проверка, что все кнопки закрылись
+  _checkDisableAllBtns = () => {
+    if (this.btnWallpaper.disabled && this.btnBed.disabled) {
+      this._allDisabled = true
+      console.warn('все кнопки задизаблены!')
+      this.runFinalScene()
+    }
+  }
+  
+  // проверка, что все предметы выбраны
+  _checkedEnterAllItems = (event) => {
+    const state = event.detail.state
+  
+    if (state.bed.check && state.wallpaper.check) {
+      this._isWinGame = true
+      console.warn('все предметы выбраны!')
+      this.runFinalScene()
+    }
+  }
+  
+  _addedHandlers = () => {
+    this.btnWallpaper.addEventListener('click', this._btnWallpaperHandler)
+    this.btnBed.addEventListener('click', this._btnBedHandler)
+    this.game.addEventListener('state-room', this._checkedEnterAllItems)
   }
   
   _btnWallpaperHandler = () => {
@@ -33,22 +59,20 @@ class Game {
     }
     
     this.rowItemWallpaper.classList.toggle('visually-hidden')
-    this.btnBad.classList.toggle('visually-hidden')
+    this.btnBed.classList.toggle('visually-hidden')
+    this._checkDisableAllBtns()
   }
   
   _btnBedHandler = () => {
     if (stateRoomItems.bed.check) {
-      this.btnBad.disabled = true
+      this.btnBed.disabled = true
     }
     
     this.rowItemBad.classList.toggle('visually-hidden')
     this.btnWallpaper.classList.toggle('visually-hidden')
+    this._checkDisableAllBtns()
   }
   
-  _addedHandlers = () => {
-    this.btnWallpaper.addEventListener('click', this._btnWallpaperHandler)
-    this.btnBad.addEventListener('click', this._btnBedHandler)
-  }
 }
 
 new Game().init()
