@@ -127,8 +127,8 @@ img {
 .bed {
     display: none;
     position: absolute;
-    top: 60%;
-    left: 70%;
+    top: 70%;
+    left: 60%;
     transform: translate(-70%, -60%);
 }
 
@@ -140,8 +140,8 @@ img {
 .wallpaper {
     display: none;
     position: absolute;
-    top: 1%;
-    left: 9%;
+    top: 0;
+    left: 0;
 }
 
 .wallpaper.is-active {
@@ -152,10 +152,10 @@ img {
 .bob {
     display: none;
     position: absolute;
-    top: 25%;
+    top: 35%;
     left: 8%;
     z-index: 1;
-    transform: scale(0.8);
+    transform: scale(0.5);
 }
 
 .bob.is-active {
