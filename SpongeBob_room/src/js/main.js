@@ -1,6 +1,7 @@
 import { stateRoomItems } from './utils/const.js';
 import { render } from './utils/utils.js';
 import ActiveTabs from './abstract/ActiveTabs.js';
+import SpongeBob from './view/SpongeBob.js'
 
 class Game {
   constructor() {
@@ -14,6 +15,8 @@ class Game {
     this.btnBed       = document.querySelector('.button-bad')
     this._allDisabled = false
     this._isWinGame = false
+    
+    this.spongeBob = new SpongeBob()
   }
   
   init = () => {
@@ -39,6 +42,8 @@ class Game {
   // проверка, что все предметы выбраны
   _checkedEnterAllItems = (event) => {
     const state = event.detail.state
+    
+    this.spongeBob.changeEmotions(state)
   
     if (state.bed.check && state.wallpaper.check) {
       this._isWinGame = true
@@ -72,7 +77,6 @@ class Game {
     this.btnWallpaper.classList.toggle('visually-hidden')
     this._checkDisableAllBtns()
   }
-  
 }
 
 new Game().init()

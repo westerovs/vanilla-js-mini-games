@@ -4,6 +4,16 @@ const render = (container, template, place = 'beforeend') => {
   }
 }
 
+const clearActiveClass = (element, className = 'is-active') => {
+  element.find(item => item.classList.remove(`${ className }`))
+}
+
+const setActiveClass = (element, index, className = 'is-active') => {
+  element[index].classList.add(`${ className }`)
+}
+
 export {
-  render
+  render,
+  clearActiveClass,
+  setActiveClass
 }
