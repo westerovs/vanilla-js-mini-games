@@ -1,7 +1,8 @@
-import {bedIsChecked, wallpaperIsChecked} from './const.js';
+import {stateRoomItems} from '../utils/const.js';
 
 export default class ActiveTabs {
   constructor(tabSelector, contentSelector) {
+    this.game = document.querySelector('.game')
     this.tabItems = Array.from(document.querySelectorAll(tabSelector))
     this.contentItems = Array.from(document.querySelectorAll(contentSelector))
   }
@@ -30,15 +31,25 @@ export default class ActiveTabs {
   _getCheckedStatus = (btn, index) => {
     switch (btn.dataset.type) {
       case 'wallpaper':
-        wallpaperIsChecked.check = true
-        wallpaperIsChecked.indexItem = index
+        stateRoomItems.wallpaper.check = true
+        stateRoomItems.wallpaper.indexItem = index
         break
       case 'bed':
-        bedIsChecked.check = true
-        bedIsChecked.indexItem = index
+        stateRoomItems.bed.check = true
+        stateRoomItems.bed.indexItem = index
         break
-    }
+    }  
+    
+    this.checkStatusOnFinalGame()
+  }
   
+  checkStatusOnFinalGame = () => {
+    this.game.dispatchEvent(new CustomEvent('state-room', {
+      bubbles: true,
+      detail: {
+        state: stateRoomItems
+      }
+    }))
   }
   
   init = () => {
