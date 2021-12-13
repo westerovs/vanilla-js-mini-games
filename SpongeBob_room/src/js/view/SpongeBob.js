@@ -1,8 +1,19 @@
 import { clearActiveClass } from '../utils/utils.js'
+/*
+грустное выражение при выборе грязной кровати
+нейтральное выражение при выборе массажной кровати
+довольное выражение при выборе кроватки спанчБоба
+* */
 
 export default class SpongeBob {
   constructor() {
     this.bobImages = Array.from(document.querySelectorAll('.bob'))
+
+    this.bobEmotions = {
+      norm: 0,
+      sad: 1,
+      happy: 2,
+    }
   
     // SpongeBob↓ Wallpaper↓ Bed↓
     // 0: norm
@@ -25,28 +36,43 @@ export default class SpongeBob {
   
   }
   
+  setEmotion = (bobEmotion) => {
+    this.bobImages.find((item, index) => {
+      if (index === bobEmotion) item.classList.add('is-active')
+    })
+  }
+  
   changeEmotions = (state) => {
     // console.log('выбраны обои: ', state.wallpaper.indexItem)
     // console.log('выбрана кровать: ', state.bed.indexItem)
-    clearActiveClass(this.bobImages, 'is-active')
   
+    // обои
     if (state.wallpaper.indexItem === 0) {
-      this.bobImages.find((item, index) => {
-        if (index === 0) item.classList.add('is-active')
-      })
+      clearActiveClass(this.bobImages, 'is-active')
+      this.setEmotion(this.bobEmotions.happy)
     }
-    
     if (state.wallpaper.indexItem >= 1) {
-      this.bobImages.find((item, index) => {
-        if (index === 1) item.classList.add('is-active')
-      })
+      clearActiveClass(this.bobImages, 'is-active')
+      this.setEmotion(this.bobEmotions.sad)
+    }
+  
+    // кровати
+    if (state.bed.indexItem === 0) {
+      clearActiveClass(this.bobImages, 'is-active')
+      this.setEmotion(this.bobEmotions.norm)
+    }
+    if (state.bed.indexItem === 1) {
+      clearActiveClass(this.bobImages, 'is-active')
+      this.setEmotion(this.bobEmotions.happy)
+    }
+    if (state.bed.indexItem === 2) {
+      clearActiveClass(this.bobImages, 'is-active')
+      this.setEmotion(this.bobEmotions.sad)
     }
   }
   
   init = () => {
-    this.bobImages.find((item, index) => {
-      if (index === 0) item.classList.add('is-active')
-    })
+    this.setEmotion(this.bobEmotions.norm)
   }
 }
 
