@@ -1,168 +1,173 @@
-/*
-картинки-заглушки
-https://via.placeholder.com/150x100
-*/
-
 *,
 ::before,
 ::after {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .page {
-    min-height: 100%;
+  min-height: 100%;
 }
 
 .page-body {
-    min-height: 100%;
-    font-size: 18px;
-    font-family: Geometria, Arial, Helvetica, sans-serif;
-    background-color: #2c7580;
-    color: #ccc;
-    overflow: hidden;
+  min-height: 100%;
+  font-size: 18rem;
+  font-family: Geometria, Arial, Helvetica, sans-serif;
+  background-color: #2c7580;
+  color: #ccc;
+  overflow: hidden;
 }
 
 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 /*безопасное скрытие элемента*/
 .visually-hidden {
-    position: absolute !important;
-    width: 1px !important;
-    height: 1px !important;
-    margin: -1px !important;
-    padding: 0 !important;
-    border: 0 !important;
-    clip: rect(0 0 0 0) !important;
-    overflow: hidden !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
 }
 
 .game {
-    position: relative;
-    margin: 50px auto;
-    width: 1366px;
-    height: 1366px;
-    background-image: url("../img/bg_state_1.jpg");
-    background-repeat: no-repeat;
-    background-position: center;
-    user-select: none;
+  position: relative;
+  margin: 10px auto;
+  width: 800px;
+  height: 800px;
+  background-image: url("../img/bg_state_1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  user-select: none;
 }
 
 .win-message {
-    position: absolute;
-    top: 400px;
-    left: 430px;
-    display: grid;
-    place-items: center;
-    width: 250px;
-    height: 100px;
-    background: white;
-    color: black;
-    border-radius: 30px;
-    font-size: 25px;
-    z-index: 3;
+  position: absolute;
+  top: 400px;
+  left: 430px;
+  display: grid;
+  place-items: center;
+  width: 250px;
+  height: 100px;
+  background: white;
+  color: black;
+  border-radius: 30px;
+  font-size: 25px;
+  z-index: 3;
 }
 
 .button-panel {
-    position: absolute;
-    top: 1000px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 630px;
-    justify-content: space-between;
-    z-index: 2;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 630px;
+  justify-content: space-between;
+  z-index: 2;
 }
 
 .row-items {
-    position: absolute;
-    left: 160px;
-    display: flex;
-    gap: 0 10px;
+  position: absolute;
+  left: 133px;
+  display: flex;
+  gap: 0 10px;
 }
 
 .row-items-bed {
-    left: initial;
-    right: 160px;
+  left: initial;
+  right: 133px;
 }
 
 .button {
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: black;
-    font-size: 22px;
-    font-weight: bold;
-    cursor: pointer;
-    background-image: url("../img/panel/box.png");
-    background-repeat: no-repeat;
-    background-position: center;
+  width: 125px;
+  height: 125px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: black;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+
+  background-image: url("../img/panel/box.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 5px 5px 30px #000000;
+  transition: transform 0.2s;
 }
+
+.row-items > .button:hover {
+  transform: scale(1.1);
+}
+
 
 .button-wallpaper,
 .button-bad {
-    position: absolute;
+  position: absolute;
 }
 
 .button-wallpaper {
-    left: 0;
+  left: 0;
 }
 
 .button-bad {
-    right: 0;
+  right: 0;
 }
 
 .button-items.is-active {
-    box-shadow: 0 0 20px gold;
+  box-shadow: 0 0 20px gold;
 }
 
 /* кровати */
 .bed {
-    display: none;
-    position: absolute;
-    top: 70%;
-    left: 60%;
-    transform: translate(-70%, -60%);
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 60%;
+  transform: translate(-70%, -60%) scale(0.7);
 }
 
 .bed.is-active {
-    display: block;
+  display: block;
 }
 
 /* обои */
 .wallpaper {
-    display: none;
-    position: absolute;
-    top: 0;
-    left: 0;
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .wallpaper.is-active {
-    display: block;
+  display: block;
 }
 
 /* bob */
 .bob {
-    display: none;
-    position: absolute;
-    top: 35%;
-    left: 8%;
-    z-index: 1;
-    transform: scale(0.5);
+  display: none;
+  position: absolute;
+  top: 35%;
+  left: 8%;
+  z-index: 1;
+  transform: scale(0.5);
 }
 
 .bob.is-active {
-    display: block;
+  display: block;
 }
 
 button[disabled] {
-    filter: grayscale(1);
-    color: gray;
-    cursor: not-allowed;
+  filter: grayscale(1);
+  color: gray;
+  cursor: not-allowed;
 }

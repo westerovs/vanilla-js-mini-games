@@ -58,6 +58,7 @@ class Game {
     this.game.addEventListener('state-room', this._checkedEnterAllItems)
   }
   
+  // обработчик main btn [1]
   _btnWallpaperHandler = () => {
     if (stateRoomItems.wallpaper.check) {
       this.btnWallpaper.disabled = true
@@ -68,6 +69,7 @@ class Game {
     this._checkDisableAllBtns()
   }
   
+  // обработчик main btn [1]
   _btnBedHandler = () => {
     if (stateRoomItems.bed.check) {
       this.btnBed.disabled = true
@@ -82,3 +84,4 @@ class Game {
 new Game().init()
 new ActiveTabs('.row-items-bed .button-items', '.bed').init()
 new ActiveTabs('.row-items-wallpaper .button-items', '.wallpaper').init()
+

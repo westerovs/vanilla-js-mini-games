@@ -1,5 +1,5 @@
-# SpongeBob room constructor
+# SpongeBob mini-game
 🟢RUN:<br>
-https://westerovs.github.com
+https://westerovs.github.io/SpongeBob_room/
 <br>
-<img src="cover.jpg">
+<img src="cover1.png">
